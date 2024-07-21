@@ -91,6 +91,28 @@ class LinkedList {
       return targetNode;
     }
   }
+
+  deleteLast() {
+    this.deleteAt(this.count - 1);
+  }
+
+  getNodeAt(index) {
+    if (index < 0 || index >= this.count) {
+      throw new Error("범위를 벗어났습니다.");
+    }
+
+    let currentNode = this.head;
+
+    if (index === 0) {
+      return currentNode;
+    } else {
+      for (let i = 0; i < index - 1; i++) {
+        currentNode = currentNode.next;
+      }
+
+      return currentNode.next;
+    }
+  }
 }
 
 export { Node, LinkedList };
@@ -102,12 +124,5 @@ const c = new Node(2);
 const ll = new LinkedList();
 ll.insertAt(0, 100);
 ll.insertAt(1, 200);
-ll.insertAt(2, 300);
-ll.insertLast(1000);
-ll.insertLast(2000);
-ll.insertLast(3000);
-ll.deleteAt(ll.count - 1);
-ll.deleteAt(2);
 
-console.log(ll.printAll());
-console.log(ll.count);
+console.log(ll.getNodeAt(0));
